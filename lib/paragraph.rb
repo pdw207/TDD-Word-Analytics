@@ -14,26 +14,29 @@ class Paragraph
   end
 
   def letter_count
+
     #count any letter (exclude whitespace and symbols)
     character_count(/[a-zA-Z]/)
   end
 
 
   def symbol_count
+
     #count any character except letters and whitespace
     character_count(/[^a-zA-Z  \n]/)
 
   end
 
   def top_words
-    top_words =[]
-    word_hash = word_count
-    3.times {
-      key, value = word_hash.max_by { |k, v| v  }
-      top_words << key
-      word_hash[key] = 0 #after added to top word
-    }
-    top_words
+
+    top_three_elements(word_count)
+
+  end
+
+  def top_letters
+
+    top_three_elements(letter_count)
+
   end
 
   private
@@ -45,4 +48,13 @@ class Paragraph
     end
     words
   end
+
+  def top_three_elements(element)
+    element.group_by{|k,v| v}.sort.reverse.first(3).map do |array_pair|
+      array_pair.last.map { |e| e.first }
+    end
+  end
+
+
+
 end

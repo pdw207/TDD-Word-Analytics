@@ -58,13 +58,15 @@ describe Paragraph do
   end
 
   it 'has top three words' do
-    expect(long_string.top_words).to eq(["the", "quick", "brown"])
-    expect(symbol_string.top_words).to eq(["dfsaf", "324%^&#\#$%4", "sfda."])
-    expect(multiple_paragraphs.top_words).to eq(["the", "of", "use"])
+    expect(long_string.top_words).to eq([["the"], ["quick", "brown", "fox", "jumps", "over", "lazy", "dog."]])
+    expect(symbol_string.top_words).to eq([["dfsaf", "324%^&#\#$%4", "sfda."]])
+    expect(multiple_paragraphs.top_words).to eq([["the", "of"], ["use", "tdd", "to", "drive", "design", "a", "wordanalysis", "class.", "there", "should", "be", "an", "instance", "method", "defined", "for", "each", "bullets", "listed", "above."]])
   end
 
-  it 'has top three letters'
-  it 'lists number of words used only once'
-  it 'returns all letters not used in the string'
+  it 'has top three letters' do
+    expect(long_string.top_letters).to eq([["o"], ["e"], ["t", "h", "u", "r"]])
+    expect(symbol_string.top_letters).to eq([["f"], ["d", "s", "a"]])
+    expect(multiple_paragraphs.top_letters).to eq([["e"], ["s", "d"], ["t"]])
+  end
 
 end
